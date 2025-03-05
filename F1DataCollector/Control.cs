@@ -133,37 +133,5 @@ namespace F1DataCollector
 			}
 			return laps;
 		}
-
-		public async Task GetQualifyingTimesQ3Brasilia2024()
-		{
-			using HttpClient client = new HttpClient();
-
-			try
-			{
-				// Define the API endpoint
-				string url = "https://api.openf1.org/v1/laps?session_key=9658&driver_number=1&is_pit_out_lap=false";
-
-				// Send a GET request
-				HttpResponseMessage response = await client.GetAsync(url);
-
-				// Ensure the response is successful
-				response.EnsureSuccessStatusCode();
-
-				// Read response content
-				String responseBody = await response.Content.ReadAsStringAsync();
-
-				// Deserialize JSON into a C# object
-				List<Lap> laps = JsonSerializer.Deserialize<List<Lap>>(responseBody);
-				
-				foreach(Lap lap in laps)
-				{
-					
-				}
-			}
-			catch (Exception e)
-			{
-				System.Diagnostics.Debug.WriteLine($"Request error: {e.Message}");
-			}
-		}
 	}
 }
